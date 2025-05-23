@@ -12,7 +12,7 @@ const port = 3000
 //creation of middlewares
  const  loggingMiddleware = function(req, res, next){
      console.log("first middleware is  running");
-     next();
+    next();
  }
 
  //loading of middlewares
@@ -29,8 +29,9 @@ const port = 3000
 
  const  validationMiddleware = function(req, res, next){
     console.log("third middleware is  running");
-    next();
- } 
+     //ending the Req res cycle
+    res.send("Execution ends here");
+} 
 
  app.use(validationMiddleware);
  
