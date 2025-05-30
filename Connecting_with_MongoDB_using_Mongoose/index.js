@@ -7,7 +7,7 @@ const app = express();
 const  dotenv = require('dotenv');
 
 
-// load variables from .env file 👇
+// load variables from .env file 👇 like  connection String  password
 dotenv.config();
 //loading env file
   
