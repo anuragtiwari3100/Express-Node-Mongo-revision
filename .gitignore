@@ -1,7 +1,13 @@
 Doc2.docx
 ~$Doc2.docx
-node_modules
-package-lock.json
-package.json
-.env
+# Ignore all node_modules folders recursively
+**/node_modules/
 
+# Ignore all package-lock.json files
+**/package-lock.json
+
+# Ignore all package.json files
+**/package.json
+
+# Ignore all .env files
+**/.env
