@@ -1,6 +1,6 @@
 const Post = require("../model/postModel");
 const Like = require("../model/likeModel");
-const{response} = require(express);
+const{response} = require('express');
 
 
 //Like a post 

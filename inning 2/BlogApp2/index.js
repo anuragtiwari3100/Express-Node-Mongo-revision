@@ -12,8 +12,10 @@
 
  //mount
  app.use("/api/v1", blog);
+
  //connecting to db
  const DB_CONNECT = require("./config/database");
+ 
  DB_CONNECT();
 
 

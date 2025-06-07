@@ -29,7 +29,7 @@ const updatedPost = await Post.findByIdAndUpdate(post,{$push:{comment:savedComme
     res.json({
         post:updatedPost,
     })
-
+    
 
      }catch(err){
         return res.status(500).json({

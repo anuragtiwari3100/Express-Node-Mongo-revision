@@ -6,8 +6,8 @@ const mongoose =  require('mongoose');
 
 const  commentSchema = new mongoose.Schema({
     post:{
-        //dbout1
-        type:mongoose.Schema.ObjectID,
+       
+         type: mongoose.Schema.Types.ObjectId,
         ref:"Post"
     },
     user:{
@@ -17,4 +17,4 @@ const  commentSchema = new mongoose.Schema({
 })
 
 //exporting
-module.exports = mongoose.model("Comment",commentSchema);
+module.exports = mongoose.model("Comment",commentSchema); 
