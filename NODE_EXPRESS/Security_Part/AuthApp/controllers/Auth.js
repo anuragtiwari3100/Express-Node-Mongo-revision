@@ -59,10 +59,12 @@ exports.signup = async(req,res)=>{
 
 //LoginHandler
 exports.login = async (req,res)=>{
+
     try{
 
         //fetch data
         const{email, password} = req.body;
+        
       //Validation on email and password
      if(!email || ! password){
         return res.status(400).json({
@@ -73,6 +75,7 @@ exports.login = async (req,res)=>{
 
     //checking  for the registered user
      let user = await User.findOne({email});
+    //  console.log("the user is"+user.password);
      //if not a registered user
      if(!user){
       return res.json(401).json({
@@ -85,14 +88,15 @@ exports.login = async (req,res)=>{
     const payload ={
         email:user.email,
         id:user._id,
-        role:user.role
+        role:user.ro
     };
 
 
      //Verify password && generate a JWT token
      if(await bcrypt.compare( password , user.password )){
+                          // Pass from req.body, comparing with the hashed password from DB       
 
-        //password matched
+        //password matched  then  following task
         let  token  = jwt.sign(payload,jwt_secret,
 
             {
@@ -100,13 +104,13 @@ exports.login = async (req,res)=>{
             }
         );
 
-
+       
           user= user.toObject();
         user.token = token;
         user.password=undefined;
 
         const  options ={
-         expires : new Date(Date.now() + 3*24*60*60*1000),
+         expires : new Date(Date.now() + 3*1000),
          httpOnly:true,
         }
 
@@ -116,6 +120,15 @@ exports.login = async (req,res)=>{
             user,
             message:'User Logged in Successfully',
         });
+
+        // res.status(200).json({
+        //     success:true,
+        //     token,
+        //     user,
+        //     message:'User Logged in Successfully',
+        // });
+
+        
         
      }else{
         //password do not matched
