@@ -103,13 +103,28 @@ exports.videoUpload = async (req, res) => {
         console.log(name, tags, email);
 
         const videoFile = req.files.videoFile;
-
+        
+    
+    
         // Validation 
         const supportedTypes = ["mp4", "mov"];
         const fileType = videoFile.name.split(".")[1].toLowerCase();
 
         
         // HW - File Maximum 5MB
+        
+        //  Size validation max 5MB
+       
+
+        const maxSize = 5 * 1024 * 1024;  //5 mb in bytes
+         if(videoFile.size > maxSize){
+            return res.status(400).json({
+                success: false,
+                message:"please  choose file size lesser then 5 mb"
+            })
+         }
+
+
         if (!isFileTypeSupported(fileType, supportedTypes)) {
          return   res.status(400).json({
                 success: false,
